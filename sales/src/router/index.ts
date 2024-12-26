@@ -1,0 +1,42 @@
+import {
+  createRouter,
+  createWebHistory,
+  type RouteRecordRaw,
+} from "vue-router";
+
+export const menus = [
+  {
+    path: "/order",
+    component: () => import("@/views/order/index.vue"),
+    meta: { title: "订单", icon: "Star" },
+  },
+  {
+    path: "/client",
+    component: () => import("@/views/client/index.vue"),
+    meta: { title: "客户", icon: "Star" },
+  },
+];
+
+export const routes: Array<RouteRecordRaw> = [
+  {
+    path: "/",
+    component: () => import("@/views/common/index.vue"),
+  },
+  {
+    path: "/login",
+    component: () => import("@/views/common/login.vue"),
+  },
+];
+
+if (window.__MICRO_APP_ENVIRONMENT__) {
+  routes.push(...menus);
+} else {
+  routes[0].children = menus;
+}
+
+const router = createRouter({
+  history: createWebHistory(window.__MICRO_APP_BASE_ROUTE__ || "/"),
+  routes,
+});
+
+export default router;
