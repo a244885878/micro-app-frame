@@ -9,10 +9,10 @@
 </template>
 
 <script setup lang="ts">
-import Menu from "@/components/Menu/index.vue";
-import { useRoute } from "vue-router";
+import Menu from "@/components/Menu/index.vue"
+import { useRoute } from "vue-router"
 
-const route = useRoute();
+const route = useRoute()
 </script>
 
 <style scoped lang="scss">

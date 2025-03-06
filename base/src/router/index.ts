@@ -1,26 +1,27 @@
-import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router';
+import { createRouter, createWebHistory, type RouteRecordRaw } from "vue-router"
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/',
-    component: () => import('@/pages/home/index.vue'),
+    path: "/",
+    component: () => import("@/views/home/index.vue"),
     children: [
       {
-        path: '/:subApplicationName/:subApplicationPath',
-        component: () => import('@/views/index.vue'),
+        path: "/:subName/:subPath*",
+        component: () => import("@/pages/index.vue")
       },
-      { path: '/:pathMatch(.*)*', component: () => import('@/views/404.vue') }
+      { path: "/404", component: () => import("@/pages/404.vue") },
+      { path: "/:pathMatch(.*)*", component: () => import("@/pages/404.vue") }
     ]
   },
   {
-    path: '/login',
-    component: () => import('@/pages/login/index.vue'),
-  },
-];
+    path: "/login",
+    component: () => import("@/views/login/index.vue")
+  }
+]
 
 const router = createRouter({
   history: createWebHistory(),
-  routes,
-});
+  routes
+})
 
-export default router;
+export default router

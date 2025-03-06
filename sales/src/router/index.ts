@@ -35,7 +35,7 @@ if (window.__MICRO_APP_ENVIRONMENT__) {
 }
 
 const router = createRouter({
-  history: createWebHistory(window.__MICRO_APP_BASE_ROUTE__ || "/"),
+  history: createWebHistory(),
   routes,
 });
 

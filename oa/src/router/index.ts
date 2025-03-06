@@ -15,6 +15,23 @@ export const menus = [
     component: () => import("@/views/flow/index.vue"),
     meta: { title: "流程", icon: "Star" },
   },
+  {
+    path: "/demo",
+    component: () => import("@/views/demo/index.vue"),
+    meta: { title: "demo", icon: "Star" },
+  },
+  {
+    path: "/checkingIn",
+    component: () => import("@/views/checkingIn/index.vue"),
+    meta: { title: "考勤", icon: "Star" },
+    children: [
+      {
+        path: "/checkingIn/clockIn",
+        component: () => import("@/views/checkingIn/clockIn.vue"),
+        meta: { title: "打卡" },
+      },
+    ],
+  },
 ];
 
 export const routes: Array<RouteRecordRaw> = [
@@ -35,7 +52,7 @@ if (window.__MICRO_APP_ENVIRONMENT__) {
 }
 
 const router = createRouter({
-  history: createWebHistory(window.__MICRO_APP_BASE_ROUTE__ || "/"),
+  history: createWebHistory(),
   routes,
 });
 

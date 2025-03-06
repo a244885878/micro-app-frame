@@ -4,8 +4,8 @@ import {
   type RouteLocationNormalizedLoaded,
   type NavigationGuardNext,
 } from "vue-router";
-import userStore from "./store";
-const { setUserInfo, store } = userStore();
+// import userStore from "./store";
+// const { setUserInfo, store } = userStore();
 
 const whiteList = ["/login"]; // 没有重定向的白名单
 
@@ -20,7 +20,6 @@ router.beforeEach(
     if (window.__MICRO_APP_ENVIRONMENT__) {
       if (log) {
         console.log("基座环境、基座token：", localStorage.getItem("token"));
-        console.log("基座环境、基座的全局状态：", store.userInfo);
         log = false;
       }
       return next();
@@ -37,10 +36,10 @@ router.beforeEach(
         next({ path: "/" });
       } else {
         // 独立运行时获取全局数据
-        if (!store.userInfo) {
-          await setUserInfo();
-          console.log("独立环境的全局状态:", store.userInfo);
-        }
+        // if (!store.userInfo) {
+        //   await setUserInfo();
+        //   console.log("独立环境的全局状态:", store.userInfo);
+        // }
         next();
       }
     } else {
